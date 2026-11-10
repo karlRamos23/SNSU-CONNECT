@@ -1,0 +1,789 @@
+
+/* ==========================================
+   SNSU CONNECTS - MODERN LOGIN DESIGN
+   Student / Administrator
+   ========================================== */
+
+/* LOGIN PAGE */
+
+#app:not(.in):has(.sa-login) {
+  width: 100%;
+  max-width: none;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+}
+
+#app .sa-login,
+#app .sa-login *,
+.sa-reset-overlay,
+.sa-reset-overlay * {
+  box-sizing: border-box;
+}
+
+#app .login.sa-login {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  max-width: none;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 20px 14px;
+
+  background: #20222f;
+  color: #ffffff;
+}
+
+/* ORANGE TO GREEN TOP BACKGROUND */
+
+#app .sa-login::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30vh;
+  max-height: 235px;
+
+  background: linear-gradient(
+    110deg,
+    #e28a26 0%,
+    #b99546 35%,
+    #4e8049 70%,
+    #06552b 100%
+  );
+
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 88%,
+    50% 100%,
+    0 88%
+  );
+}
+
+/* MAIN LOGIN CARD */
+
+#app .sa-login .sa-card {
+  position: relative;
+  width: min(360px, 100%);
+  margin: 0 auto;
+  padding: 0;
+  overflow: visible;
+
+  border: 1px solid #595d70;
+  border-radius: 19px;
+  background: #363949;
+  color: #ffffff;
+
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.35);
+}
+
+/* CARD TOP GRADIENT LINE */
+
+#app .sa-login .sa-accent {
+  width: 100%;
+  height: 4px;
+
+  border-radius: 19px 19px 0 0;
+
+  background: linear-gradient(
+    90deg,
+    #e28a26,
+    #a6a052,
+    #08743a
+  );
+}
+
+#app .sa-login .sa-content {
+  padding: 20px 22px 22px;
+}
+
+/* ==========================================
+   ACCOUNT TYPE - TOP RIGHT
+   ========================================== */
+
+#app .sa-login .sa-top {
+  position: relative;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  margin-bottom: 16px;
+}
+
+#app .sa-login .sa-role-picker {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+/* STUDENT / ADMIN BUTTON */
+
+#app .sa-login .sa-role-picker > summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  width: auto;
+  min-height: 34px;
+  margin: 0;
+  padding: 6px 12px;
+
+  border: 1px solid #727688;
+  border-radius: 999px;
+  background: #272b39;
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+  list-style: none;
+  transition: all 0.2s ease;
+}
+
+#app .sa-login
+.sa-role-picker > summary::-webkit-details-marker {
+  display: none;
+}
+
+#app .sa-login
+.sa-role-picker > summary::marker {
+  content: "";
+}
+
+#app .sa-login
+.sa-role-picker > summary:hover,
+#app .sa-login
+.sa-role-picker[open] > summary {
+  background: #174b31;
+  border-color: #349461;
+}
+
+#app .sa-login
+.sa-role-picker > summary svg {
+  width: 17px;
+  height: 17px;
+  color: #ffffff;
+}
+
+#app .sa-login .sa-chevron {
+  width: 14px;
+  height: 14px;
+  transition: transform 0.2s ease;
+}
+
+#app .sa-login
+.sa-role-picker[open] .sa-chevron {
+  transform: rotate(180deg);
+}
+
+/* ACCOUNT TYPE DROPDOWN */
+
+#app .sa-login .sa-role-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 100;
+
+  width: 238px;
+  padding: 8px;
+
+  border: 1px solid #555b6d;
+  border-radius: 12px;
+
+  background: #292d3b;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+
+  animation: saDropdown 0.18s ease;
+}
+
+#app .sa-login .sa-role-menu-label {
+  padding: 6px 8px 9px;
+  color: #abb2c7;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+/* STUDENT / ADMIN OPTIONS */
+
+#app .sa-login .sa-role-option {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  width: 100%;
+  min-height: 51px;
+  margin: 0;
+  padding: 9px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  background: transparent;
+  color: #ffffff;
+
+  text-align: left;
+  cursor: pointer;
+}
+
+#app .sa-login .sa-role-option:hover {
+  background: #3a3e4e;
+}
+
+#app .sa-login .sa-role-option.selected {
+  border-color: #257d4d;
+  background: #174831;
+}
+
+#app .sa-login
+.sa-role-option > svg:first-child {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+  color: #ffffff;
+}
+
+#app .sa-login .sa-role-option span {
+  flex: 1;
+  min-width: 0;
+}
+
+#app .sa-login .sa-role-option strong {
+  display: block;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 750;
+}
+
+#app .sa-login .sa-role-option small {
+  display: block;
+  margin-top: 3px;
+  color: #b7bed0;
+  font-size: 10px;
+}
+
+#app .sa-login
+.sa-role-option > svg:last-child:not(:first-child) {
+  width: 16px;
+  height: 16px;
+  color: #80e6a8;
+}
+
+/* ==========================================
+   WELCOME HEADING
+   ========================================== */
+
+#app .sa-login .sa-heading {
+  margin: 0 0 20px;
+  padding: 0;
+  text-align: left;
+}
+
+#app .sa-login .sa-heading h1 {
+  margin: 0 0 5px;
+  padding: 0;
+
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  line-height: 1.2;
+}
+
+#app .sa-login .sa-heading p {
+  margin: 0;
+  color: #b2b8ca;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   EMAIL AND PASSWORD FIELDS
+   ========================================== */
+
+#app .sa-login .sa-field {
+  width: 100%;
+  margin: 0 0 13px;
+}
+
+#app .sa-login .sa-field > label {
+  display: block;
+  margin: 0 0 7px;
+
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* INPUT CONTAINER */
+
+#app .sa-login .sa-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  width: 100%;
+  height: 44px;
+  padding: 0 12px;
+
+  border: 1px solid #5a6073;
+  border-radius: 10px;
+
+  background: #20222f;
+  color: #ffffff;
+
+  transition: border-color 0.2s ease;
+}
+
+#app .sa-login .sa-input:focus-within {
+  border-color: #239458;
+  box-shadow: 0 0 0 3px rgba(35, 148, 88, 0.16);
+}
+
+/* WHITE OUTLINE ICONS */
+
+#app .sa-login .sa-input > svg {
+  width: 19px;
+  height: 19px;
+  flex-shrink: 0;
+
+  color: #ffffff;
+  stroke: currentColor;
+  stroke-width: 1.8;
+}
+
+/* INPUT TEXT */
+
+#app .sa-login .sa-input input {
+  display: block;
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
+
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  outline: none;
+  box-shadow: none;
+
+  background: transparent;
+  color: #ffffff;
+
+  font-size: 12px;
+}
+
+#app .sa-login .sa-input input::placeholder {
+  color: #9da4b8;
+  opacity: 1;
+}
+
+/* PASSWORD SHOW / HIDE */
+
+#app .sa-login .sa-eye {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  min-width: 28px;
+  height: 32px;
+
+  margin: 0;
+  padding: 0;
+  border: none;
+
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+#app .sa-login .sa-eye svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+/* ==========================================
+   FORGOT PASSWORD
+   ========================================== */
+
+#app .sa-login .sa-forgot {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+
+  margin: -3px 0 13px;
+}
+
+#app .sa-login .sa-forgot button {
+  width: auto;
+  margin: 0;
+  padding: 2px 0;
+
+  border: none;
+  background: transparent;
+
+  color: #ffab48;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+#app .sa-login .sa-forgot button:hover {
+  text-decoration: underline;
+}
+
+/* ERROR MESSAGE */
+
+#app .sa-login #err {
+  margin: 0 0 8px;
+  font-size: 11px;
+  color: #ffaaaa;
+}
+
+#app .sa-login #err:empty {
+  display: none;
+}
+
+/* ==========================================
+   SIGN IN BUTTON
+   ========================================== */
+
+#app .sa-login .sa-submit {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+
+  margin: 9px 0 0;
+  padding: 10px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: #06552b;
+  color: #ffffff;
+
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#app .sa-login .sa-submit:hover {
+  background: #08763c;
+}
+
+#app .sa-login .sa-submit:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+/* ORANGE CREATE ACCOUNT BUTTON */
+
+#app .sa-login .sa-submit.sa-register {
+  background: #e28a26;
+  color: #ffffff;
+}
+
+#app .sa-login .sa-submit.sa-register:hover {
+  background: #f09a38;
+}
+
+/* ==========================================
+   GOOGLE SIGN IN - ICON ONLY
+   ========================================== */
+
+#app .sa-login .sa-divider {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  margin: 18px 0 11px;
+
+  color: #b5bbcc;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+#app .sa-login .sa-divider::before,
+#app .sa-login .sa-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #636779;
+}
+
+#app .sa-login .sa-google,
+#app .sa-login #google-signin-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  min-height: 44px;
+}
+
+/* ==========================================
+   CREATE ACCOUNT FOOTER
+   ========================================== */
+
+#app .sa-login .sa-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+
+  margin-top: 15px;
+  padding: 0;
+
+  color: #b3b9c8;
+  font-size: 12px;
+  text-align: center;
+}
+
+#app .sa-login .sa-footer button {
+  width: auto;
+  margin: 0;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #ffa843;
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+}
+
+#app .sa-login .sa-footer button:hover {
+  text-decoration: underline;
+}
+
+#app .sa-login .sa-admin-note {
+  color: #b3b9c8;
+  font-size: 11px;
+}
+
+/* ==========================================
+   FORGOT PASSWORD POPUP
+   ========================================== */
+
+.sa-reset-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 20000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 15px;
+
+  background: rgba(5, 8, 18, 0.78);
+  backdrop-filter: blur(6px);
+}
+
+.sa-reset-modal {
+  position: relative;
+  width: min(350px, 100%);
+  padding: 23px;
+
+  border: 1px solid #5a6073;
+  border-radius: 17px;
+
+  background: #363949;
+  color: #ffffff;
+
+  box-shadow: 0 20px 55px rgba(0,0,0,.45);
+}
+
+.sa-reset-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+
+  display: grid;
+  place-items: center;
+
+  width: 30px;
+  height: 30px;
+
+  border: none;
+  border-radius: 8px;
+  background: #252938;
+  color: #ffffff;
+
+  cursor: pointer;
+}
+
+.sa-reset-close svg {
+  width: 17px;
+  height: 17px;
+}
+
+.sa-reset-symbol {
+  display: grid;
+  place-items: center;
+
+  width: 42px;
+  height: 42px;
+  margin-bottom: 13px;
+
+  border-radius: 11px;
+  background: #06552b;
+  color: #ffffff;
+}
+
+.sa-reset-symbol svg {
+  width: 21px;
+  height: 21px;
+}
+
+.sa-reset-modal h2 {
+  margin: 0 0 6px;
+  color: #ffffff;
+  font-size: 20px;
+}
+
+.sa-reset-modal p {
+  margin: 0 0 16px;
+  color: #b7bdcd;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.sa-reset-form label {
+  display: block;
+  margin-bottom: 7px;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.sa-reset-form input {
+  width: 100%;
+  height: 43px;
+  padding: 0 12px;
+
+  border: 1px solid #5a6073;
+  border-radius: 9px;
+  outline: none;
+
+  background: #20222f;
+  color: #ffffff;
+  font-size: 12px;
+}
+
+.sa-reset-send {
+  width: 100%;
+  min-height: 43px;
+  margin-top: 13px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: #06552b;
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.sa-reset-send:disabled {
+  opacity: 0.6;
+}
+
+.sa-reset-msg {
+  margin-top: 8px;
+  font-size: 11px;
+}
+
+.sa-reset-msg.success {
+  color: #8ce6ac;
+}
+
+.sa-reset-msg.error {
+  color: #ffaaaa;
+}
+
+/* ==========================================
+   MOBILE RESPONSIVE
+   ========================================== */
+
+@media (max-width: 420px) {
+  #app .sa-login .sa-card {
+    width: 100%;
+  }
+
+  #app .sa-login .sa-content {
+    padding: 17px;
+  }
+
+  #app .sa-login .sa-heading h1 {
+    font-size: 23px;
+  }
+}
+
+@media (max-height: 650px) {
+  #app .login.sa-login {
+    justify-content: flex-start;
+  }
+}
+
+/* ANIMATIONS */
+
+@keyframes saDropdown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* SNSU LOGO - TOP LEFT */
+
+#app .sa-login .sa-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#app .sa-login .sa-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+}
+
+#app .sa-login .sa-logo img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}

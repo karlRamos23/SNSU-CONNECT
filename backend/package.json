@@ -1,0 +1,27 @@
+{
+  "name": "snsu-connects",
+  "version": "1.0.0",
+  "description": "SNSU Connects - Campus Event and Attendance Tracker",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node src/scripts/seed.js",
+    "vapid": "node src/scripts/generate-vapid.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^12.11.1",
+    "dotenv": "^16.6.1",
+    "express": "^4.19.2",
+    "google-auth-library": "^11.3.2",
+    "jsonwebtoken": "^9.0.2",
+    "web-push": "^3.6.7"
+  },
+  "allowScripts": {
+    "better-sqlite3@12.11.1": true
+  }
+}
